@@ -23,7 +23,8 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
             
-            date = Productos.getAdd_date();
+            Productos prod = new Productos();
+            date = prod.getAdd_date();
             
         } catch (Exception e) {
         }
