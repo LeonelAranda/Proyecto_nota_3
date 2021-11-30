@@ -33,7 +33,8 @@ public class Registro {
             stmt.setString(1,productos.getNombre());
             stmt.setInt(2, productos.getCantidad());
             stmt.setString(3,productos.getTipo_producto());
-            stmt.setDate(3,new java.sql.Date(date.getTime()));
+            stmt.setDate(4,new java.sql.Date(date.getTime()));
+            
             
             stmt.executeUpdate();
             stmt.close();
@@ -47,5 +48,63 @@ public class Registro {
             return false;
         }
     }
+ 
     
+    public boolean actualizar (Productos productos){
+        
+        Date date;
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            Productos prod = new Productos();
+            date = prod.getAdd_date();
+            
+            String query ="UPDATE productos SET nombre=? cantidad=? tipo_producto=? add_date=? WHERE = id_producto";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setString(1,productos.getNombre());
+            stmt.setInt(2, productos.getCantidad());
+            stmt.setString(3,productos.getTipo_producto());
+            stmt.setDate(4,new java.sql.Date(date.getTime()));
+            stmt.setInt(5,productos.getId_producto());
+            
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error SQL al actualizar producto.");
+            return false;
+        }catch (Exception e){
+            System.out.println("Error al actualizar producto.");
+            return false;
+        }
+    }
+            public boolean eliminar (int id_producto){
+                
+            
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+                    
+            
+            String query ="DELETE FROM productos WHERE id_producto=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1,id_producto);
+            
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error SQL al eliminar producto.");
+            return false;
+        }catch (Exception e){
+            System.out.println("Error al eliminar producto.");
+            return false;
+        } 
+                
+            }
+           
 }
+
