@@ -11,6 +11,7 @@ import modelo.Productos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 /**
  *
  * @author leoaranda
@@ -103,6 +104,26 @@ public class Registro {
             System.out.println("Error al eliminar producto.");
             return false;
         } 
+                
+    }
+            public Productos buscarPorId( int id_producto){
+                
+                try {
+                    Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+                    
+            
+            String query ="SELECT * FROM productos WHERE id_producto=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1,id_producto);
+                    
+            ResultSet rs = stmt.executeQuery();
+                    
+                    
+                } catch (Exception e) {
+                }
+                
+                
                 
             }
            
