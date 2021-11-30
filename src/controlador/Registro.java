@@ -9,6 +9,8 @@ import bd.Conexion;
 import java.util.Date;
 import modelo.Productos;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 /**
  *
  * @author leoaranda
@@ -26,7 +28,23 @@ public class Registro {
             Productos prod = new Productos();
             date = prod.getAdd_date();
             
-        } catch (Exception e) {
+            String query ="INSERT INTO productos(nombre,cantidad,tipo_producto,add_date)VALUES (?,?,?,?)";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setString(1,productos.getNombre());
+            stmt.setInt(2, productos.getCantidad());
+            stmt.setString(3,productos.getTipo_producto());
+            stmt.setDate(3,new java.sql.Date(date.getTime()));
+            
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error SQL al agregar producto.");
+            return false;
+        }catch (Exception e){
+            System.out.println("Error al agregar producto.");
+            return false;
         }
     }
     
