@@ -12,7 +12,6 @@ package vista;
  */
 import modelo.Productos;
 import controlador.Registro;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -134,6 +133,11 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 420, 220));
 
         jbtnListar.setText("Listar");
+        jbtnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnListarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbtnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         jbtnActualizar.setText("Actualizar");
@@ -273,6 +277,30 @@ public class Menu extends javax.swing.JFrame {
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnEliminarActionPerformed
+
+    private void jbtnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListarActionPerformed
+        int id_producto, cantidad;
+        String nombre, tipo_producto;
+        Date add_date;
+        
+        Registro reg=new Registro();
+        DefaultTableModel modelo = (DefaultTableModel) this.jtblListar.getModel();
+        
+        modelo.setRowCount(0);
+        
+        
+        List<Productos> lista = reg.listarProd();
+            
+            for (Productos prod :lista) {
+                id_producto=prod.getId_producto();
+                nombre=prod.getNombre();
+                cantidad=prod.getCantidad();
+                tipo_producto=prod.getTipo_producto();
+                add_date=prod.getAdd_date();
+                
+                modelo.addRow(new Object[]{id_producto, nombre, cantidad, tipo_producto, add_date});
+            }
+    }//GEN-LAST:event_jbtnListarActionPerformed
 
     /**
      * @param args the command line arguments
