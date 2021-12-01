@@ -122,11 +122,13 @@ public class Registro {
                     
                     ResultSet rs = stmt.executeQuery();
                     
+                    
                     if (rs.next()) {
                         prod.setId_producto(rs.getInt("id_producto"));
-                        prod.setNombre(rs.getString(""));
-                        prod.setCantidad(rs.getInt(""));
-                        prod.setTipo_producto(rs.getString(""));
+                        prod.setNombre(rs.getString("nombre"));
+                        prod.setCantidad(rs.getInt("cantidad"));
+                        prod.setTipo_producto(rs.getString("tipo_producto"));
+                        prod.setAdd_date(rs.getDate("add_date"));
                         //prod. ... date? me falta la base de datos, no sé como se guardó
                         //stmt.setDate(4,new java.sql.Date(date.getTime()));
                         
@@ -136,7 +138,7 @@ public class Registro {
                     cnx.close();
     
                 } catch (SQLException e) {
-                    System.out.println("Error al mostrar producto por id"+e.getMessage());
+                    System.out.println("Error SQL al listar el producto por id"+e.getMessage());
                 }
                 return prod;
                 
@@ -158,11 +160,12 @@ public class Registro {
                     ResultSet rs = stmt.executeQuery();
                     
                     while (rs.next()) {
-                        Productos prod=new Productos();
+                        Productos prod = new Productos();
                         prod.setId_producto(rs.getInt("id_producto"));
-                        prod.setNombre(rs.getString(""));
-                        prod.setCantidad(rs.getInt(""));
-                        prod.setTipo_producto(rs.getString(""));
+                        prod.setNombre(rs.getString("nombre"));
+                        prod.setCantidad(rs.getInt("cantidad"));
+                        prod.setTipo_producto(rs.getString("tipo_producto"));
+                        prod.setAdd_date(rs.getDate("add_date"));
                         //prod. ... date? me falta la base de datos, no sé como se guardó
                         //stmt.setDate(4,new java.sql.Date(date.getTime()));
                         
@@ -173,7 +176,7 @@ public class Registro {
                     cnx.close();
     
                 } catch (SQLException e) {
-                    System.out.println("Error al listar productos"+e.getMessage());
+                    System.out.println("Error SQL al listar todos los productos" + e.getMessage());
                 }
                 return lista;
                 
