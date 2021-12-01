@@ -256,8 +256,8 @@ public class Añadir extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese nombre","validación",2);
         }
         tipo_producto = this.jtxt_tipoProducto.getText();
-        cantidad = this.jtxt_cantidad.getText();
-        fecha = this.jt
+        //cantidad = this.jtxt_cantidad.getText();
+        //fecha = this.jt
         
     }//GEN-LAST:event_jbtn_añadirActionPerformed
 

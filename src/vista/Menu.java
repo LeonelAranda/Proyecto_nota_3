@@ -40,7 +40,8 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmi_añadir = new javax.swing.JMenuItem();
         jmi_salir = new javax.swing.JMenuItem();
-        jmCerrarSesion = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenu();
+        jmiCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu de opciones");
@@ -137,14 +138,24 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
         jMenu1.getAccessibleContext().setAccessibleName("añadir");
 
-        jmCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion.png"))); // NOI18N
-        jmCerrarSesion.setText("Cerrar Sesión");
-        jmCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion.png"))); // NOI18N
+        jMenuBar2.setText("Cerrar Sesión");
+        jMenuBar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCerrarSesionActionPerformed(evt);
+                jMenuBar2ActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jmCerrarSesion);
+
+        jmiCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion.png"))); // NOI18N
+        jmiCerrarSesion.setText("Cerrar Sesión");
+        jmiCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCerrarSesionActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(jmiCerrarSesion);
+
+        jMenuBar1.add(jMenuBar2);
 
         setJMenuBar(jMenuBar1);
 
@@ -175,13 +186,17 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtBuscarActionPerformed
 
-    private void jmCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCerrarSesionActionPerformed
-        new IniciarSesion().setVisible(true);
-    }//GEN-LAST:event_jmCerrarSesionActionPerformed
+    private void jMenuBar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBar2ActionPerformed
+        
+    }//GEN-LAST:event_jMenuBar2ActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
+
+    private void jmiCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCerrarSesionActionPerformed
+        new IniciarSesion().setVisible(true);
+    }//GEN-LAST:event_jmiCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,11 +239,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnBuscar;
-    private javax.swing.JMenu jmCerrarSesion;
+    private javax.swing.JMenuItem jmiCerrarSesion;
     private javax.swing.JMenuItem jmi_añadir;
     private javax.swing.JMenuItem jmi_salir;
     private javax.swing.JTextField jtxtBuscar;

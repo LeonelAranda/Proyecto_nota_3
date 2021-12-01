@@ -34,7 +34,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jbtnIngresar = new javax.swing.JToggleButton();
         jbtn_salir = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,14 +59,13 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         jPasswordField1.setText("jPasswordField1");
 
-        jToggleButton1.setText("Ingresar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnIngresar.setText("Ingresar");
+        jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jbtnIngresarActionPerformed(evt);
             }
         });
 
-        jbtn_salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\leoar\\Downloads\\entrar (1).png")); // NOI18N
         jbtn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_salirActionPerformed(evt);
@@ -94,7 +93,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton1)
+                        .addComponent(jbtnIngresar)
                         .addGap(131, 131, 131))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,7 +113,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(41, 41, 41)
-                .addComponent(jToggleButton1)
+                .addComponent(jbtnIngresar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jbtn_salir)
                 .addContainerGap())
@@ -139,9 +138,9 @@ public class IniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void jbtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresarActionPerformed
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_jbtnIngresarActionPerformed
 
     private void jbtn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_salirActionPerformed
 
@@ -191,7 +190,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jbtnIngresar;
     private javax.swing.JToggleButton jbtn_salir;
     // End of variables declaration//GEN-END:variables
 }
