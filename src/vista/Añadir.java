@@ -301,6 +301,8 @@ public class Añadir extends javax.swing.JFrame {
 
         Registro reg = new Registro();
         
+        System.out.println("Probando rama");
+        
     }//GEN-LAST:event_jbtn_añadirActionPerformed
 
     private void jtxt_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_diaActionPerformed
