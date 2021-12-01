@@ -31,8 +31,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmi_añadir = new javax.swing.JMenuItem();
+        jmi_listar = new javax.swing.JMenuItem();
+        jmi_salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,16 +41,33 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondofoodaseo.png"))); // NOI18N
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N
-        jMenu1.setText("Añadir");
+        jMenu1.setText("Productos");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dieta.png"))); // NOI18N
-        jMenuItem1.setText("Alimentos");
-        jMenu1.add(jMenuItem1);
+        jmi_añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dieta.png"))); // NOI18N
+        jmi_añadir.setText("añadir");
+        jmi_añadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_añadirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_añadir);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/articulos-de-aseo.png"))); // NOI18N
-        jMenuItem2.setText("Utiles de aseo");
-        jMenu1.add(jMenuItem2);
+        jmi_listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/articulos-de-aseo.png"))); // NOI18N
+        jmi_listar.setText("Listar");
+        jmi_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_listar);
+
+        jmi_salir.setText("Salir");
+        jmi_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_salirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_salir);
 
         jMenuBar1.add(jMenu1);
         jMenu1.getAccessibleContext().setAccessibleName("añadir");
@@ -75,6 +93,19 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmi_añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_añadirActionPerformed
+        new Añadir().setVisible(true);
+
+    }//GEN-LAST:event_jmi_añadirActionPerformed
+
+    private void jmi_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_salirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmi_salirActionPerformed
+
+    private void jmi_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarActionPerformed
+        new Listar().setVisible(true);
+    }//GEN-LAST:event_jmi_listarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +147,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jmi_añadir;
+    private javax.swing.JMenuItem jmi_listar;
+    private javax.swing.JMenuItem jmi_salir;
     // End of variables declaration//GEN-END:variables
 }
