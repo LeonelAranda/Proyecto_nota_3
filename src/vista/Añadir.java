@@ -5,8 +5,11 @@
  */
 package vista;
 
+import controlador.Registro;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Productos;
 
 /**
  *
@@ -245,21 +248,58 @@ public class Añadir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_añadirActionPerformed
-        String nombre,tipo_producto;
+         String nombre, tipo_producto, fechaStr,dia,mes,ano;
         int cantidad;
-        Date fecha;
-        
+        Date fecha=null;
+
         nombre = this.jtxt_nombre.getText();
-        
-        if (nombre.isEmpty()){
-            
-            JOptionPane.showMessageDialog(this, "Ingrese nombre","validación",2);
+
+        if (nombre.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese nombre", "validación", 2);
         }
         tipo_producto = this.jtxt_tipoProducto.getText();
         //cantidad = this.jtxt_cantidad.getText();
         //fecha = this.jt
-        
-        System.out.println("Hola");
+
+        tipo_producto = this.jtxt_tipoProducto.getText();
+        if (tipo_producto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Tipo", "Validación", 2);
+            this.jtxt_tipoProducto.requestFocus();
+            return;
+        }
+
+        dia = this.jtxt_dia.getText();
+        mes = this.jtxt_mes.getText();
+        ano = this.jtxt_ano.getText();
+
+        if (dia.isEmpty() || mes.isEmpty() || ano.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese fecha", "validación", 2);
+            this.jtxt_dia.requestFocus();
+            return;
+
+        }
+
+        fechaStr = dia + "/" + mes + "/" + ano;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            fecha = formato.parse(fechaStr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese fecha de formato dd/mm/yyyy", "validación", 2);
+        }
+
+        try {
+            cantidad = Integer.parseInt(this.jtxt_cantidad.getText());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "La cantidad debe ser numerica", "validación", 2);
+            this.jtxt_cantidad.requestFocus();
+            return;
+        }
+
+        Productos producto = new Productos(0, nombre, cantidad, tipo_producto, fecha);
+
+        Registro reg = new Registro();
         
     }//GEN-LAST:event_jbtn_añadirActionPerformed
 
