@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author leoaranda
@@ -108,22 +110,72 @@ public class Registro {
     }
             public Productos buscarPorId( int id_producto){
                 
+                Productos prod = new Productos();
                 try {
                     Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
+                    Connection cnx = con.obtenerConexion();
                     
             
-            String query ="SELECT * FROM productos WHERE id_producto=?";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1,id_producto);
+                    String query ="SELECT * FROM productos WHERE id_producto=?";
+                    PreparedStatement stmt = cnx.prepareStatement(query);
+                    stmt.setInt(1,id_producto);
                     
-            ResultSet rs = stmt.executeQuery();
+                    ResultSet rs = stmt.executeQuery();
                     
-                    
-                } catch (Exception e) {
+                    if (rs.next()) {
+                        prod.setId_producto(rs.getInt("id_producto"));
+                        prod.setNombre(rs.getString(""));
+                        prod.setCantidad(rs.getInt(""));
+                        prod.setTipo_producto(rs.getString(""));
+                        //prod. ... date? me falta la base de datos, no sé como se guardó
+                        //stmt.setDate(4,new java.sql.Date(date.getTime()));
+                        
+                    }
+                    rs.close();
+                    stmt.close();
+                    cnx.close();
+    
+                } catch (SQLException e) {
+                    System.out.println("Error al mostrar producto por id"+e.getMessage());
                 }
+                return prod;
                 
                 
+            }
+            
+            public List<Productos> listarProd(){
+                List<Productos> lista = new ArrayList<>();
+                
+                try {
+                    Conexion con = new Conexion();
+                    Connection cnx = con.obtenerConexion();
+                    
+            
+                    String query ="SELECT * FROM productos";
+                    PreparedStatement stmt = cnx.prepareStatement(query);
+                    
+                    
+                    ResultSet rs = stmt.executeQuery();
+                    
+                    while (rs.next()) {
+                        Productos prod=new Productos();
+                        prod.setId_producto(rs.getInt("id_producto"));
+                        prod.setNombre(rs.getString(""));
+                        prod.setCantidad(rs.getInt(""));
+                        prod.setTipo_producto(rs.getString(""));
+                        //prod. ... date? me falta la base de datos, no sé como se guardó
+                        //stmt.setDate(4,new java.sql.Date(date.getTime()));
+                        
+                        lista.add(prod);
+                    }
+                    rs.close();
+                    stmt.close();
+                    cnx.close();
+    
+                } catch (SQLException e) {
+                    System.out.println("Error al listar productos"+e.getMessage());
+                }
+                return lista;
                 
             }
            
