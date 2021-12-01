@@ -10,15 +10,23 @@ package vista;
  *
  * @author leoar
  */
+import modelo.Productos;
+import controlador.Registro;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
+    
     public Menu() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,8 +41,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jtxtBuscar = new javax.swing.JTextField();
         jbtnBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtblListar = new javax.swing.JTable();
+        jbtnListar = new javax.swing.JButton();
+        jbtnActualizar = new javax.swing.JButton();
+        jbtnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -100,16 +111,41 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 540, 50));
 
-        jList1.setBackground(new java.awt.Color(0, 31, 49));
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jtblListar.setBackground(new java.awt.Color(18, 38, 51));
+        jtblListar.setForeground(new java.awt.Color(255, 255, 255));
+        jtblListar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 360, 190));
+            },
+            new String [] {
+                "Id", "Nombre", "Cantidad", "Tipo", "fecha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtblListar);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 420, 220));
+
+        jbtnListar.setText("Listar");
+        jPanel1.add(jbtnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+
+        jbtnActualizar.setText("Actualizar");
+        jPanel1.add(jbtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+
+        jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondofoodaseo.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 360));
@@ -167,7 +203,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
         );
 
         pack();
@@ -191,12 +227,52 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuBar2ActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
-        // TODO add your handling code here:
+        
+        int id_producto, cantidad;
+        String nombre, tipo_producto;
+        Date add_date;
+        
+        Registro reg=new Registro();
+        DefaultTableModel modelo = (DefaultTableModel) this.jtblListar.getModel();
+        
+        try {
+            id_producto= Integer.parseInt(this.jtxtBuscar.getText());
+        } catch (Exception e) {
+            id_producto=0;
+        }
+        modelo.setRowCount(0);
+        
+        if (id_producto==0) {
+            List<Productos> lista = reg.listarProd();
+            
+            for (Productos prod :lista) {
+                id_producto=prod.getId_producto();
+                nombre=prod.getNombre();
+                cantidad=prod.getCantidad();
+                tipo_producto=prod.getTipo_producto();
+                add_date=prod.getAdd_date();
+                
+                modelo.addRow(new Object[]{id_producto, nombre, cantidad, tipo_producto, add_date});
+            }
+            
+        }else{
+            Productos prod = reg.buscarPorId(id_producto);
+            nombre=prod.getNombre();
+            cantidad=prod.getCantidad();
+            tipo_producto=prod.getTipo_producto();
+            add_date=prod.getAdd_date();
+            
+            modelo.addRow(new Object[]{id_producto, nombre, cantidad, tipo_producto, add_date});
+        }
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
     private void jmiCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCerrarSesionActionPerformed
         new IniciarSesion().setVisible(true);
     }//GEN-LAST:event_jmiCerrarSesionActionPerformed
+
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,27 +302,28 @@ public class Menu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Menu().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbtnActualizar;
     private javax.swing.JButton jbtnBuscar;
+    private javax.swing.JButton jbtnEliminar;
+    private javax.swing.JButton jbtnListar;
     private javax.swing.JMenuItem jmiCerrarSesion;
     private javax.swing.JMenuItem jmi_añadir;
     private javax.swing.JMenuItem jmi_salir;
+    private javax.swing.JTable jtblListar;
     private javax.swing.JTextField jtxtBuscar;
     // End of variables declaration//GEN-END:variables
 }
