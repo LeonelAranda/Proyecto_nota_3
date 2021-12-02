@@ -204,6 +204,11 @@ public class Añadir extends javax.swing.JFrame {
         });
 
         jbtn_limpiar.setText("Limpiar");
+        jbtn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_limpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -301,7 +306,12 @@ public class Añadir extends javax.swing.JFrame {
 
         Registro reg = new Registro();
         
-        System.out.println("Probando rama");
+        if (reg.agregar(producto)){
+            JOptionPane.showMessageDialog(this, "Se agregó producto", "Información", 1);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "No se agregó libro", "Información", 0);
+        }
         
     }//GEN-LAST:event_jbtn_añadirActionPerformed
 
@@ -354,6 +364,17 @@ public class Añadir extends javax.swing.JFrame {
 
     private void jbtn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_salirActionPerformed
         dispose();    }//GEN-LAST:event_jbtn_salirActionPerformed
+
+    private void jbtn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_limpiarActionPerformed
+
+        this.jtxt_nombre.setText("");
+        this.jtxt_tipoProducto.setText("");
+        this.jtxt_cantidad.setText("");
+        this.jtxt_dia.setText("");
+        this.jtxt_mes.setText("");
+        this.jtxt_ano.setText("");
+        
+    }//GEN-LAST:event_jbtn_limpiarActionPerformed
 
     /**
      * @param args the command line arguments
