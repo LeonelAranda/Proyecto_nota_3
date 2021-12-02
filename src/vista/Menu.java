@@ -272,7 +272,7 @@ public class Menu extends javax.swing.JFrame {
         
         modelo.setRowCount(0);
         
-        
+        Añadir add=new Añadir();
         List<Productos> lista = reg.listarProd();
             
             for (Productos prod :lista) {
@@ -281,7 +281,7 @@ public class Menu extends javax.swing.JFrame {
                 cantidad=prod.getCantidad();
                 tipo_producto=prod.getTipo_producto();
                 add_date=prod.getAdd_date();
-                
+
                 modelo.addRow(new Object[]{id_producto, nombre, cantidad, tipo_producto, add_date});
             }
     }//GEN-LAST:event_jbtnListarActionPerformed
