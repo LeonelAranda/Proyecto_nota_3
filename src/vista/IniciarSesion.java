@@ -160,7 +160,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         }
         else {
             this.jlbl_mensaje.setForeground(Color.red);
-            this.jlbl_mensaje.setText("No hay mano pa vo´");
+            this.jlbl_mensaje.setText("Usuario o contraseña incorrectos");
         
         }
     }//GEN-LAST:event_jbtnIngresarActionPerformed
